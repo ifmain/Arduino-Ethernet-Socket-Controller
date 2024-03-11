@@ -20,4 +20,4 @@ Please note that currently the application is available only in Russian.
 
 ## AI-Free Development
 
-This project's code was meticulously crafted without the assistance of artificial intelligence. The GitHub description is generated using GPT-3.
+This project's code was meticulously crafted without the assistance of artificial intelligence. The GitHub Project description is generated using GPT-3.
