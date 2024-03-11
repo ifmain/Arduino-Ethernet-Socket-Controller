@@ -379,7 +379,6 @@ void SetTrackSettings(const String &ip, const String &val_timeDelay, const Strin
 
   readTrack(ipTrack, &ipTrackStat, timeDelay, timeOff, timeLoad, timePing);
 
-  // Конвертация String в unsigned int
   timeDelay = val_timeDelay.toInt();
   timeOff = val_timeOff.toInt();
   timeLoad = val_timeLoad.toInt();
@@ -504,7 +503,6 @@ bool ping(EthernetClient &client, IPAddress &server, int pingTime) {
     client.println(F("Connection: close"));
     client.println(); 
 
-    // Ожидаем начала ответа
     unsigned long timeout = millis() + pingTime;
     while (!client.available() && millis() < timeout) {
       ;
