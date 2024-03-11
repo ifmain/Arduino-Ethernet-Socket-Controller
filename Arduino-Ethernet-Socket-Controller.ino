@@ -433,7 +433,7 @@ void writeTrack(byte *ipTrack, bool *ipTrackStat, unsigned int timeDelay, unsign
   for (int i = 0; i < 4; i++) {
     EEPROM.write(ipTrackStartAddress + i, ipTrack[i]);
   }
-  EEPROM.write(ipTrackStatStartAddress, *ipTrackStat ? 1 : 0);  // Приведение bool к byte
+  EEPROM.write(ipTrackStatStartAddress, *ipTrackStat ? 1 : 0); 
 
   writeIntIntoEEPROM(timeDelayStartAddress, timeDelay);
   writeIntIntoEEPROM(timeOffStartAddress, timeOff);
@@ -445,7 +445,7 @@ void readTrack(byte *ipTrack, bool *ipTrackStat, unsigned int &timeDelay, unsign
   for (int i = 0; i < 4; i++) {
     ipTrack[i] = EEPROM.read(ipTrackStartAddress + i);
   }
-  *ipTrackStat = EEPROM.read(ipTrackStatStartAddress) == 1;  // Преобразование byte обратно в bool
+  *ipTrackStat = EEPROM.read(ipTrackStatStartAddress) == 1; 
 
   timeDelay = readIntFromEEPROM(timeDelayStartAddress);
   timeOff = readIntFromEEPROM(timeOffStartAddress);
@@ -500,15 +500,14 @@ void defaultSettings() {
 
 bool ping(EthernetClient &client, IPAddress &server, int pingTime) {
   if (client.connect(server, 80)) {
-    // Отправляем HTTP GET запрос
     client.println(F("GET / HTTP/1.1"));
     client.println(F("Connection: close"));
-    client.println();  // Пустая строка завершает запрос
+    client.println(); 
 
     // Ожидаем начала ответа
-    unsigned long timeout = millis() + pingTime;  // 5 секунд таймаут
+    unsigned long timeout = millis() + pingTime;
     while (!client.available() && millis() < timeout) {
-      ;  // Просто ждем начала ответа или таймаута
+      ;
     }
 
     if (client.available()) {
@@ -595,7 +594,7 @@ void loop() {
     }
   }
 
-  if (core_timer % timePing == 0) {  // Действие происходит раз в сек
+  if (core_timer % timePing == 0) {
     timer++;
     if (timer > timeLoad) {
       if (ipTrackStat) {
